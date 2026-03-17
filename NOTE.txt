@@ -1,0 +1,6 @@
+1. create project name
+2. composer create-project laravel/laravel . 
+3. create db name in .env and create in php/mysqul too.
+4. for login register 
+5. composer require laravel/breeze --dev
+6. php artisan breeze:install

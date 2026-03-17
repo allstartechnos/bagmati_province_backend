@@ -1,0 +1,92 @@
+#message-section {
+  .top__msg-container {
+    background-color: $secondary-color;
+    padding-top: 2rem;
+    width: 100%;
+    height: 21rem;
+    .customRow {
+      transform: translateY(55px);
+      .message__desc {
+        .msg_from {
+          h2 {
+            color: $color-white;
+            margin: 0;
+          }
+        }
+        .line {
+          filter: brightness(0) invert(1);
+        }
+        .msg_name {
+          h5 {
+            color: $color-white;
+          }
+        }
+      }
+      .message__image {
+        width: 19rem;
+        height: 19rem;
+        box-shadow: 0 0 0 5px $color-white;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      height: auto;
+      .customRow {
+        flex-direction: column-reverse;
+        transform: translateY(0);
+        .message__desc {
+          .line {
+            img {
+              width: 100%;
+            }
+          }
+        }
+        .message__image {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+  .message_wrapper {
+    .msg {
+      padding: 5rem;
+      p {
+        color: $text-color-one;
+        font-size: 14px;
+      }
+      @media screen and (max-width: 992px) {
+        padding: 5rem 0;
+      }
+    }
+    .faq__title {
+      h4 {
+        color: $secondary-color;
+        margin-bottom: 15px;
+      }
+    }
+    .accordion__wrapper {
+      .accordion-item {
+        border-left: 0;
+        border-right: 0;
+        .accordion-button {
+          background-color: $color-white;
+          color: $color-black;
+          border-radius: 0px;
+          font-weight: 600;
+          font-size: 16px;
+          padding: 15px 10px;
+          &:not(.collapsed) {
+            color: $color-black !important;
+            background-color: $color-white !important;
+            box-shadow: none !important;
+          }
+          &:focus {
+            color: $color-black !important;
+            background-color: $color-white !important;
+            box-shadow: none !important;
+            //   border-color: ;
+          }
+        }
+      }
+    }
+  }
+}

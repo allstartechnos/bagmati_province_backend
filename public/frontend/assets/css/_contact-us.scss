@@ -1,0 +1,154 @@
+#contact__section {
+  .contact__bg {
+    background-image: url("../images/test.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 25rem;
+    .overlay__bg {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.63) 21.35%,
+        #fff
+      );
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .contact__form {
+    position: relative;
+    top: -5rem;
+    .top__header {
+      margin-bottom: 3rem;
+      .small__header {
+        font-weight: 700;
+        font-size: 14px;
+        color: $primary-color;
+      }
+      .large__header {
+        p {
+          font-weight: 600;
+          font-size: 35px;
+          color: $secondary-color;
+          line-height: 30px;
+        }
+      }
+      @media screen and (max-width: 512px) {
+        text-align: center;
+      }
+    }
+    .contact__form-holder {
+      .input-group {
+        .form-control {
+          border-right: 0;
+          padding: 10px;
+          font-weight: 500;
+          font-size: 14px;
+          color: $text-color-one;
+          border-color: $text-color;
+          &:focus {
+            box-shadow: none;
+          }
+        }
+        span {
+          background-color: $color-white;
+          border-color: $text-color;
+          i {
+            color: $primary-color;
+            font-size: 20px;
+          }
+          // border-left: 0;
+        }
+      }
+      .form-control {
+        border-color: $text-color;
+        &:focus {
+          box-shadow: none;
+          border-color: $text-color;
+        }
+      }
+    }
+    .contact__logo {
+      width: 15rem;
+    }
+    .contact__college {
+      .fullform {
+        p {
+          font-weight: 600;
+          font-size: 14px;
+          color: $secondary-color;
+        }
+      }
+      .college-details {
+        .item {
+          .icon-holder {
+            background-color: $primary-color;
+            color: $color-white;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            i {
+              font-size: 22px;
+            }
+          }
+          .text {
+            color: $text-color-one;
+            a {
+              color: $text-color-one;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #map {
+    height: 400px;
+    margin-top: 70px;
+  }
+
+  .controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  #origin-input,
+  #destination-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 200px;
+  }
+
+  #origin-input:focus,
+  #destination-input:focus {
+    border-color: #4d90fe;
+  }
+
+  #mode-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    margin-left: 12px;
+    padding: 5px 11px 0px 11px;
+  }
+
+  #mode-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+}

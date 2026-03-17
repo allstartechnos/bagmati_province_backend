@@ -1,0 +1,127 @@
+.admission-form {
+  .top-title {
+    h3 {
+      font-weight: 600;
+      margin: 0;
+      color: $primary-color;
+    }
+    h6 {
+      margin-bottom: 18px;
+    }
+  }
+  .photo-upload {
+    .custom-file-label {
+      color: $color-white;
+      width: 11rem;
+      border-radius: 5px;
+      &::after {
+        display: none;
+      }
+    }
+    .img-holder {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      .input__image-holder {
+        width: 11rem;
+        height: 10rem;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .document__title {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto;
+        z-index: 0;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+  .form_content {
+    .main_title {
+      span {
+        position: relative;
+        font-size: 28px;
+        font-weight: 600;
+        color: $footer-bg;
+        &::before {
+          position: absolute;
+          top: 20px;
+          left: -70px;
+          content: "";
+          width: 60px;
+          height: 3px;
+          background-color: $footer-bg;
+          @media screen and (max-width: 470px) {
+            display: none;
+          }
+        }
+        &::after {
+          position: absolute;
+          top: 20px;
+          right: -70px;
+          content: "";
+          width: 60px;
+          height: 3px;
+          background-color: $footer-bg;
+          @media screen and (max-width: 470px) {
+            display: none;
+          }
+        }
+      }
+    }
+    .admission_form-holder {
+      .input-image {
+        overflow: hidden;
+        padding: 0 15px;
+        .img-holder {
+          position: relative;
+          .input__image-holder {
+            width: 100%;
+            height: 12rem;
+            z-index: 1;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            object-fit: cover;
+            margin-bottom: 10px;
+          }
+          .document__title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: auto;
+            z-index: 0;
+            // transition: .3s all ease-in-out;
+            font-size: 13px;
+            p {
+              font-size: 12px;
+            }
+          }
+        }
+        .file__name {
+          font-size: 12px;
+          white-space: pre;
+        }
+        .custom-file-label {
+          color: $color-white;
+          padding: 7px;
+          width: 100%;
+          border-radius: 5px;
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
