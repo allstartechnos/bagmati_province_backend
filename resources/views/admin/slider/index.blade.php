@@ -197,8 +197,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit"
-                                class="btn btn-{{ isset($data['slider']) ? 'danger' : 'primary' }} text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
+                            <button type="submit" data-button="page"
+                                class="formButton btn btn-{{ isset($data['slider']) ? 'danger' : 'primary' }} text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
                                 data-bs-toggle="modal" data-bs-target="#create-folder">
                                 {!! isset($data['slider']) ? '<i class="ri-edit-2-fill p-1"></i>' : '<i class="ri-add-large-fill p-1"></i>' !!}
                                 {{ isset($data['slider']) ? 'Update' : 'Create' }}
@@ -280,12 +280,17 @@
                                 </div>
 
                                 <div class="text-center d-flex justify-content-around py-3">
-                                    <button type="submit"
+                                    {{-- <button type="submit"
                                         class="btn btn-primary text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
                                         data-bs-toggle="modal" data-bs-target="#create-folder">
                                         <i class="ri-add-large-fill p-1"></i>
                                         Create
-
+                                    </button> --}}
+                                    <button type="submit" data-button="post"
+                                        class="formButton btn btn-primary text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
+                                        data-bs-toggle="modal" data-bs-target="#create-folder" >
+                                        <i class="ri-add-large-fill p-1"></i>
+                                        Create
                                     </button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>

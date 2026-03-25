@@ -21,15 +21,14 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">#</th>
-                                    <th style="width: 25%">Title</th>
-                                    <th style="width: 10%">Image</th>
-                                    <th style="width: 25%">Batch</th>
+                                    <th style="width: 35%">Title</th>
+                                    <th style="width: 15%">Image</th>
                                     <th style="width: 10%">status</th>
                                     <th style="width: 25%" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="table_rows">
-                                @include('admin.client.table')
+                                @include('admin.notice.table')
 
                             </tbody>
                         </table>
@@ -48,7 +47,7 @@
                                         class="fa fa-close"></i></button>
 
                             </div>
-                            <div class="modal-body render_client_show">
+                            <div class="modal-body render_notice_show">
 
                             </div>
                         </div>
@@ -58,7 +57,13 @@
         </div>
         <div class="col-lg-5">
             <div class="card custom-card overflow-hidden border px-2">
-
+                {{-- @if (isset($data['notice']))
+                    <form action="{{ route($base_route . 'update', $data['notice']->id) }}" method="POST"
+                        class="row g-3 main_form">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="type" value="page">
+                    @else --}}
                 <form action="{{ route($base_route . 'store') }}" method="POST" enctype="multipart/form-data"
                     class="row g-3 main_form">
                     @csrf
@@ -66,8 +71,8 @@
                     {{-- @endif --}}
                     <div class="card-body">
 
-                        <h6 class="card-title">{!! isset($data['client']) ? '<i class="ri-edit-2-fill"></i>' : '<i class="ri-add-large-fill"></i>' !!}
-                            {{ isset($data['client']) ? 'Update' : 'Create' }}
+                        <h6 class="card-title">{!! isset($data['notice']) ? '<i class="ri-edit-2-fill"></i>' : '<i class="ri-add-large-fill"></i>' !!}
+                            {{ isset($data['notice']) ? 'Update' : 'Create' }}
                             {{ $panel ?? '' }}(Page)</h6>
                         <hr />
 
@@ -101,7 +106,7 @@
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
                                         <input type="text" name="title"
-                                            value="{{ isset($data['client']->title) ? $data['client']->title : old('title') }}"
+                                            value="{{ isset($data['notice']->title) ? $data['notice']->title : old('title') }}"
                                             class="form-control" id="title" placeholder="Title">
 
 
@@ -111,7 +116,7 @@
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
                                         <input type="text" name="sub_title"
-                                            value="{{ isset($data['client']->sub_title) ? $data['client']->sub_title : old('sub_title') }}"
+                                            value="{{ isset($data['notice']->sub_title) ? $data['notice']->sub_title : old('sub_title') }}"
                                             class="form-control" placeholder="Subtitle">
 
                                         <label for="floatingUser">Subtitle</label>
@@ -121,16 +126,16 @@
                                     <label for="formFile3" class="form-label">Image</label>
                                     <div class="form-group">
                                         <div class="image dropify-wrapper">
-                                            @if (!empty($data['client']->image))
-                                                <img src="{{ asset($img_path . $data['client']->image) }}" alt=""
-                                                    class="previewImage" width="100%">
+                                            @if (!empty($data['notice']->image))
+                                                <img src="{{ asset($img_path . $data['notice']->image) }}" alt=""
+                                                    class="previewImage" width="30%">
                                             @else
                                                 <img src="{{ asset('no_image.jpg') }}" alt=""
-                                                    class="previewImage" width="100%">
+                                                    class="previewImage" width="30%">
                                             @endif
                                         </div>
                                         <input name="image" class="form-control file-input custom-file-input mt-3"
-                                            type="file" id="formFile3" width="100%">
+                                            type="file" id="formFile3" width="100px">
 
                                     </div>
                                 </div>
@@ -138,7 +143,7 @@
 
                             <div class="tab-pane p-0 border-0 py-3" id="social-media-pane" role="tabpanel"
                                 aria-labelledby="social-media-pane" tabindex="0">
-                                <textarea name="description" class="form-control summernote" id="editor3">{{ isset($data['client']->description) ? $data['client']->description : old('description') }}</textarea>
+                                <textarea name="description" class="form-control summernote" id="editor3">{{ isset($data['notice']->description) ? $data['notice']->description : old('description') }}</textarea>
                             </div>
 
                             <div class="tab-pane p-0 border-0" id="banner-pane" role="tabpanel"
@@ -147,8 +152,8 @@
                                     <label for="formFile3" class="form-label">Banner</label>
                                     <div class="form-group">
                                         <div class="image dropify-wrapper">
-                                            @if (!empty($data['client']->banner))
-                                                <img src="{{ asset($img_path . $data['client']->banner) }}"
+                                            @if (!empty($data['notice']->banner))
+                                                <img src="{{ asset($img_path . $data['notice']->banner) }}"
                                                     alt="" class="previewImage" width="30%">
                                             @else
                                                 <img src="{{ asset('no_image.jpg') }}" alt=""
@@ -167,7 +172,7 @@
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
                                         <input type="text" name="seo_title"
-                                            value="{{ isset($data['client']) ? $data['client']->seo_title : '' }}"
+                                            value="{{ isset($data['notice']) ? $data['notice']->seo_title : '' }}"
                                             class="form-control" id="floatingName" placeholder="Seo Title">
 
                                         <label for="floatingName">Seo Title</label>
@@ -176,7 +181,7 @@
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
                                         <input type="text" name="seo_keyword"
-                                            value="{{ isset($data['client']) ? $data['client']->seo_keyword : '' }}"
+                                            value="{{ isset($data['notice']) ? $data['notice']->seo_keyword : '' }}"
                                             class="form-control" placeholder="Seo Keyword">
 
                                         <label for="floatingUser">Seo Keyword</label>
@@ -185,7 +190,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <textarea name="seo_description" value="" class="form-control" placeholder="Seo Description">{{ isset($data['client']) ? $data['client']->seo_description : '' }}</textarea>
+                                        <textarea name="seo_description" value="" class="form-control" placeholder="Seo Description">{{ isset($data['notice']) ? $data['notice']->seo_description : '' }}</textarea>
 
                                         <label for="floatingUser">Seo Description</label>
                                     </div>
@@ -193,10 +198,10 @@
                             </div>
 
                             <button type="submit" data-button="page"
-                                class="formButton btn btn-{{ isset($data['client']) ? 'danger' : 'primary' }} text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
+                                class="formButton btn btn-{{ isset($data['notice']) ? 'danger' : 'primary' }} text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
                                 data-bs-toggle="modal" data-bs-target="#create-folder">
-                                {!! isset($data['client']) ? '<i class="ri-edit-2-fill p-1"></i>' : '<i class="ri-add-large-fill p-1"></i>' !!}
-                                {{ isset($data['client']) ? 'Update' : 'Create' }}
+                                {!! isset($data['notice']) ? '<i class="ri-edit-2-fill p-1"></i>' : '<i class="ri-add-large-fill p-1"></i>' !!}
+                                {{ isset($data['notice']) ? 'Update' : 'Create' }}
 
                             </button>
                         </div>
@@ -215,7 +220,7 @@
                         <h6 class="modal-title">Edit {{ $panel ?? '' }}</h6>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body render_client_edit">
+                    <div class="modal-body render_notice_edit">
 
                     </div>
                 </div>
@@ -245,7 +250,7 @@
                                     <div class="form-floating">
                                         <input type="text" name="title" class="form-control title" value=""
                                             id="floatingName" placeholder="Title">
-                                        <label for="floatingName">Name</label>
+                                        <label for="floatingName">Title</label>
                                     </div>
                                 </div>
 
@@ -261,9 +266,9 @@
 
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input type="text" name="url" class="form-control url" value=""
-                                            id="floatingName" placeholder="Url">
-                                        <label for="floatingName">Batch</label>
+                                        <input type="number" name="sub_title" class="form-control sub_title"
+                                            value="" id="floatingName" placeholder="Sub Title">
+                                        <label for="floatingName">Sub title</label>
                                     </div>
                                 </div>
 
@@ -275,31 +280,17 @@
                                 </div>
 
                                 <div class="text-center d-flex justify-content-around py-3">
-                                    <button type="submit" data-button="post"
+                                    <button type="submit"
                                         class="formButton btn btn-primary text-center mx-auto btn-w-md d-flex align-items-center justify-content-center btn-wave waves-light text-nowrap waves-effect waves-light"
-                                        data-bs-toggle="modal" data-bs-target="#create-folder">
+                                        data-bs-toggle="modal" data-bs-target="#create-folder" data-button="post">
                                         <i class="ri-add-large-fill p-1"></i>
                                         Create
-
                                     </button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
                         </form><!-- End floating Labels Form -->
 
-                        <div class="col-md-12 mb-3 image">
-                            {{-- <label for="formFile3" class="form-label">Multiple Images</label> --}}
 
-                            {{-- <form action="{{ route('admin.upload') }}" method="get" enctype="multipart/form-data">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="form-label" for="separated-input">Other Multiple Images</label>
-                                        <input id="demo" type="file" name="files"
-                                            accept=" image/jpeg, image/png, text/html, application/zip, text/css, text/js"
-                                            multiple />
-                                    </div>
-                                </div>
-                            </form> --}}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -317,7 +308,7 @@
                 let id = $(this).attr('data-id')
 
                 $.ajax({
-                    url: "{{ route('admin.client.status') }}",
+                    url: "{{ route('admin.notice.status') }}",
                     data: {
                         id: id
                     },
@@ -325,6 +316,7 @@
                         successAlert(resp.success_message);
                         // location.reload();
                         // window.location.href = res.url;
+
                     },
                     error: function(err) {
                         errorAlert('error');
@@ -333,18 +325,18 @@
             });
 
             //Show
-            $(document).on('click', '.view-client', function() {
+            $(document).on('click', '.view-notice', function() {
                 let id = $(this).data('id');
 
-                // let url = "{{ route('admin.client.show', ':id') }}"; 
+                // let url = "{{ route('admin.notice.show', ':id') }}"; 
                 // url = url.replace(':id', id);
-                let url = "{{ url('/admin/client') }}/" + id;
+                let url = "{{ url('/admin/notice') }}/" + id;
 
                 $.ajax({
                     url: url,
                     type: "GET",
                     success: function(resp) {
-                        $('.render_client_show').html(resp);
+                        $('.render_notice_show').html(resp);
                     },
                     error: function(xhr) {
                         errorAlert(xhr.responseJSON?.message || 'Something went wrong');
@@ -354,20 +346,20 @@
 
             //Edit
 
-            $(document).on('click', '.edit-client', function() {
+            $(document).on('click', '.edit-notice', function() {
                 let id = $(this).data('id');
 
-                let url = "{{ route('admin.client.edit', ':id') }}";
+                let url = "{{ route('admin.notice.edit', ':id') }}";
                 url = url.replace(':id', id);
-                // let url = "{{ url('/admin/client') }}/" + id;
+                // let url = "{{ url('/admin/notice') }}/" + id;
 
                 $.ajax({
                     url: url,
                     type: "GET",
                     success: function(resp) {
-                        $('.render_client_edit').html(resp);
-                        initializeCkEditor();
+                        $('.render_notice_edit').html(resp);
                         // $('#edit').modal('show');
+                        initializeCkEditor();
                     },
                     error: function(xhr) {
                         errorAlert(xhr.responseJSON?.message || 'Something went wrong');

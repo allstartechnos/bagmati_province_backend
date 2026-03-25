@@ -11,6 +11,9 @@ $(document).ready(function () {
                 CKEDITOR.instances[instance].updateElement();
             }
         }
+
+        let isPage = current.find('.formButton').data('button') == 'page';
+
         let route = $(this).attr('action');
         let method = $(this).attr('method');
         let data = new FormData(this);
@@ -28,15 +31,17 @@ $(document).ready(function () {
                 if (res.success_message) {
                     successAlert(res.success_message)
 
-                    // $('#success_message').text(res.success_message);
+                    if (!isPage) {
+                        current
+                            .find('input:not([type="hidden"]), textarea')
+                            .val('');
 
-                    // $(".main_form").find('input,textarea').val('');
+                        current.find('.ck-content p').text('');
+                    }
 
                     if (res.reload == true) {
                         window.location.href = res.url;
                     }
-
-                    // console.log(res); 
 
                     if (res.isUpdate) {
                         updateData(res, current = null);

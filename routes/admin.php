@@ -15,8 +15,7 @@ use App\Http\Controllers\Admin\AdminCreateController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\UserProfileController;
 use App\Http\Controllers\Admin\CategoryWisePageController;
-
-
+use App\Http\Controllers\Admin\NoticeController;
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
 
@@ -33,6 +32,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     //Slider
     Route::resource('slider', SliderController::class);
     Route::get('slider-status', [SliderController::class, 'statusChanged'])->name('slider.status');
+
+    //Notices
+    Route::resource('notice', NoticeController::class);
+    Route::get('notice-status', [NoticeController::class, 'statusChanged'])->name('notice.status');
 
     //About Us
     Route::resource('about', AboutUsController::class);

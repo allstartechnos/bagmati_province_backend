@@ -24,7 +24,9 @@ class ContactController extends Controller
                 'message' => 'All input fields are mandatory',
             ]);
         } else {
-            $contact = Contact::create($request->all());
+            $contact = Contact::create($request->all() + [
+                'type' => 'post'
+            ]);
             return response()->json([
                 'status' => 200,
                 'message' => 'You have successfully completed data.'

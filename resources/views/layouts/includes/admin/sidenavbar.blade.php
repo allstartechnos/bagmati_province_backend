@@ -57,6 +57,9 @@
                             <a href="{{ route('admin.slider.index') }}" class="side-menu__item">Slider </a>
                         </li>
                         <li class="slide">
+                            <a href="{{ route('admin.notice.index') }}" class="side-menu__item">Notices </a>
+                        </li>
+                        <li class="slide">
                             <a href="{{ route('admin.message.index') }}" class="side-menu__item">Messages</a>
                         </li>
                         <li class="slide">
@@ -151,7 +154,7 @@
                 </li>
                 <!-- End::slide -->
 
-              
+
 
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"

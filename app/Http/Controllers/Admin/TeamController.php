@@ -34,7 +34,7 @@ class TeamController extends BackendBaseController
 
         $request->validate([
             'title' => 'required',
-            'rank' => 'required|unique:teams,rank'
+            'rank' => 'nullable|unique:teams,rank'
         ]);
 
 
@@ -137,7 +137,7 @@ class TeamController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required|unique:teams,title,' . $id,
-            'rank' => 'required|unique:teams,rank,' . $id
+            'rank' => 'nullable|unique:teams,rank,' . $id
         ]);
         $data = $request->except('image');
         $team = $this->model->where('type', 'post')->findOrFail($id);
