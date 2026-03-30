@@ -47,22 +47,7 @@ $(document).ready(function () {
                         updateData(res, current = null);
                     }
 
-                    //Setting Image
-                    if (res.setting) {
-                        let setting = res.setting
-
-                        if (setting.logo) {
-                            $('.settingLogo').attr('src', res.image_path + setting.logo);
-                        } else {
-                            $('.settingLogo').attr('src', '/dummy_image.jpg');
-                        }
-
-                        if (setting.fav_icon) {
-                            $('.settingFavIcon').attr('src', res.image_path + setting.fav_icon);
-                        } else {
-                            $('.settingFavIcon').attr('src', '/dummy_image.jpg');
-                        }
-                    }
+                   
 
                     if (res.trash) {
                         $('#trash_count').text(res.trash);

@@ -991,8 +991,8 @@
                         <div class="tab-pane show active p-0 border-0" id="edit-profile-tab-pane" role="tabpanel"
                             aria-labelledby="edit-profile-tab" tabindex="0">
 
-                            <form action="{{ route($base_route . 'store') }}" method="POST"
-                                enctype="multipart/form-data" class="main_form">
+                            <form action="{{ route($base_route . 'store') }}" method="POST" enctype="multipart/form-data"
+                                class="main_form">
 
                                 @csrf
                                 <ul class="list-group list-group-flush border rounded-3">
@@ -1205,8 +1205,9 @@
                                         </div>
 
                                         <div class="d-flex justify-content-end p-3">
-                                            <button type="submit" class="btn btn-danger">Update
-                                                Profile</button>
+                                            <button type="submit" data-button="page"
+                                                class="formButton btn btn-danger">Update
+                                                Setting</button>
                                         </div>
                             </form>
 
@@ -1221,3 +1222,26 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        //Setting Image
+        function updateData(res) {
+            if (res.setting) {
+                let setting = res.setting
+
+                if (setting.logo) {
+                    $('.settingLogo').attr('src', res.image_path + setting.logo);
+                } else {
+                    $('.settingLogo').attr('src', '/dummy_image.jpg');
+                }
+
+                if (setting.fav_icon) {
+                    $('.settingFavIcon').attr('src', res.image_path + setting.fav_icon);
+                } else {
+                    $('.settingFavIcon').attr('src', '/dummy_image.jpg');
+                }
+            }
+        }
+    </script>
+@endpush

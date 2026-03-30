@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Contact;
+use App\Models\Download;
 use App\Models\Message;
+use App\Models\Notice;
 
 class HomeController extends Controller
 {
@@ -29,6 +31,11 @@ class HomeController extends Controller
                 ->select('title', 'sub_title', 'image', 'banner')
                 ->first(),
 
+            'notices' => Notice::where('type', 'post')
+                ->where('status', 0)
+                ->select('title', 'sub_title', 'image', 'description')
+                ->get(),
+
             'sliders' => Slider::where('type', 'post')
                 ->where('status', 0)
                 ->select('id', 'title', 'sub_title', 'image', 'description', 'banner')
@@ -40,7 +47,7 @@ class HomeController extends Controller
 
             'abouts' => AboutUs::where('type', 'post')
                 ->where('status', 0)
-                ->select('id', 'title', 'sub_title', 'image', 'description', 'banner')
+                ->select('id', 'title', 'sub_title', 'slug', 'image', 'description', 'banner')
                 ->get(),
 
 
@@ -83,13 +90,20 @@ class HomeController extends Controller
 
             'clients' => Client::where('type', 'post')
                 ->where('status', 0)
-                ->select('id', 'title', 'sub_title', 'image', 'description', 'banner')
+                ->select('id', 'title', 'sub_title', 'url', 'image', 'description', 'banner')
                 ->latest()
                 ->get(),
 
             'client' => Client::where('type', 'page')
                 ->select('id', 'title', 'sub_title', 'description', 'image', 'banner')
                 ->first(),
+
+            'downloads' => Download::with('posts')
+                ->whereNull('parent_id')
+                ->where('type', 'post')
+                ->where('status', 0)
+                ->select('id', 'title', 'slug', 'sub_title', 'image', 'banner')
+                ->get(),
 
 
         ], 200, [

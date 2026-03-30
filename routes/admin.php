@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\AdminCreateController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\UserProfileController;
 use App\Http\Controllers\Admin\CategoryWisePageController;
+use App\Http\Controllers\Admin\DownloadController;
+use App\Http\Controllers\Admin\DownloadPostController;
 use App\Http\Controllers\Admin\NoticeController;
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
@@ -76,6 +78,14 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     //Categorywise Page For Client 
     Route::resource('page', CategoryWisePageController::class);
     Route::get('page-status', [CategoryWisePageController::class, 'statusChanged'])->name('page.status');
+
+    //Category For Download  
+    Route::resource('download', DownloadController::class);
+    Route::get('download-status', [DownloadController::class, 'statusChanged'])->name('download.status');
+
+    //Categorywise Post For Download 
+    Route::resource('downloadpost', DownloadPostController::class);
+    Route::get('downloadpost-status', [DownloadPostController::class, 'statusChanged'])->name('downloadpost.status');
 });
 
 Route::middleware(['auth', 'isSuperAdmin'])->prefix('admin')->name('admin.')->group(function () {

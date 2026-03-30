@@ -25,6 +25,11 @@ class SettingController extends BackendBaseController
     {
         $setting = $this->model->first();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('setting'));
+        return response()->json([
+            'status' => 'success',
+            'setting' => $setting,
+            'isUpdate' => true,
+        ]);
     }
 
     public function store(SettingRequest $request)
@@ -68,6 +73,7 @@ class SettingController extends BackendBaseController
             'success_message' => $message,
             'setting' => $setting,
             'image_path' => asset($this->img_path) . '/',
+            'isUpdate' => true,
         ]);
     }
 }
