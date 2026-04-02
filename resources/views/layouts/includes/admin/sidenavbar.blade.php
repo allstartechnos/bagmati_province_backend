@@ -87,11 +87,15 @@
                     <ul class="slide-menu child1">
 
                         <li class="slide">
+                            <a href="{{ route('admin.abouts.index') }}" class="side-menu__item">About Category </a>
+                        </li>
+
+                        <li class="slide">
                             <a href="{{ route('admin.about.index') }}" class="side-menu__item">About </a>
                         </li>
-                        <li class="slide">
+                        {{-- <li class="slide">
                             <a href="{{ route('admin.team.index') }}" class="side-menu__item">Our Team</a>
-                        </li>
+                        </li> --}}
 
 
                     </ul>

@@ -35,7 +35,9 @@ class DownloadPostController extends BackendBaseController
         $request->validate([
             'title' => 'required',
             'parent_id' => 'required',
+            'image' => 'required|image|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:2056', // size in KB
         ]);
+
 
 
         $data = $request->except('image', 'banner');

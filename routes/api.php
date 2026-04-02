@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AboutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CategoryController;
@@ -12,6 +13,7 @@ Route::apiResource('category', CategoryController::class);
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store']);
+Route::apiResource('about-us', AboutController::class);
 
 
 

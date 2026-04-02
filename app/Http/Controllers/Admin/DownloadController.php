@@ -187,6 +187,13 @@ class DownloadController extends BackendBaseController
         try {
             $download = $this->model->findOrFail($id);
 
+            if ($download->posts?->count() > 0) {
+                return response()->json([
+                    'error_message' => 'Please delete the related items first before deleting this.',
+                    'url' => route($this->base_route . 'index'),
+                ]);
+            }
+
             $this->deleteImage($download->image);
             $download->delete($download);
 

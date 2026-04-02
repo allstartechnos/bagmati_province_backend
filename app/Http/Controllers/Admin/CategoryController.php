@@ -187,6 +187,13 @@ class CategoryController extends BackendBaseController
         try {
             $category = $this->model->findOrFail($id);
 
+            if ($category->pages?->count() > 0) {
+                return response()->json([
+                    'error_message' => 'Please delete the related items first before deleting this.',
+                    'url' => route($this->base_route . 'index'),
+                ]);
+            }
+
             $this->deleteImage($category->image);
             $category->delete($category);
 

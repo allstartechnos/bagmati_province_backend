@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\ClientController;
@@ -42,6 +43,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     //About Us
     Route::resource('about', AboutUsController::class);
     Route::get('about-status', [AboutUsController::class, 'statusChanged'])->name('about.status');
+
+    //Category For About  
+    Route::resource('abouts', AboutController::class);
+    Route::get('aboutcategory-status', [AboutController::class, 'statusChanged'])->name('aboutcategory.status');
 
     //Our Team
     Route::resource('team', TeamController::class);

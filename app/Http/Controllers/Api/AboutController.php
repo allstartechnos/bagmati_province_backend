@@ -2,31 +2,57 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\AboutUs;
-use App\Models\Document;
+use App\Models\About;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AboutResource;
-use App\Http\Resources\DocumentResource;
 
 class AboutController extends Controller
 {
     public function index()
     {
-        $about = AboutUs::where('type', 'page')->first();
-        $abouts = AboutUs::active()->where('type', 'post')->get();
-        $document = Document::where('type', 'page')->first();
-        $documents = Document::active()->where('type', 'post')->take(4)->get();
+        $about = About::where('type', 'page')->first();
+        $abouts = About::with('posts')
+            ->where('type', 'post')
+            ->where('status', 0)
+            ->whereNull('parent_id')
+            ->select('id', 'title', 'sub_title', 'slug', 'image', 'description', 'banner')
+            ->get();
 
         return response()->json([
             'status' => 200,
             'success' => true,
             'message' => 'About data get',
-            'about' => new AboutResource($about),
-            'abouts' => AboutResource::collection($abouts),
-            'document' => new DocumentResource($document),
-            'documents' => DocumentResource::collection($documents),
+            'about' => $about,
+            'abouts' => $abouts,
             // 'img_path' => asset('images/')
+        ]);
+    }
+
+    public function show($slug)
+    {
+        $about = About::where('type', 'page')->first();
+        $abouts = About::with('posts')
+            ->where('type', 'post')
+            ->where('status', 0)
+            ->whereNull('parent_id')
+            ->select('id', 'title', 'sub_title', 'slug', 'image', 'description', 'banner')
+            ->get();
+
+        $aboutpost = About::with('posts')
+            ->where('type', 'post')
+            ->where('status', 0)
+            ->whereNull('parent_id')
+            ->where('slug', $slug)
+            ->select('id', 'title', 'sub_title', 'design', 'slug', 'image', 'description', 'banner')
+            ->first();
+
+        return response()->json([
+            'status' => 200,
+            'success' => true,
+            'message' => 'About data get',
+            'about' => $about,
+            'abouts' => $abouts,
+            'aboutpost' => $aboutpost,
         ]);
     }
 }

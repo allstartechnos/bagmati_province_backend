@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Client;
 use App\Models\Contact;
 use App\Models\Download;
@@ -23,7 +24,7 @@ class HomeController extends Controller
 
 
         return response()->json([
-            'time' => now()->timestamp, // 🔥 DEBUG PROOF
+            // 'time' => now()->timestamp, // 🔥 DEBUG PROOF
 
             'setting' => Setting::first()->makeHidden(['created_at', 'updated_at', 'created_by', 'updated_by']),
 
@@ -50,6 +51,12 @@ class HomeController extends Controller
                 ->select('id', 'title', 'sub_title', 'slug', 'image', 'description', 'banner')
                 ->get(),
 
+            'aboutpost' => About::with('posts')
+                ->where('type', 'post')
+                ->where('status', 0)
+                ->whereNull('parent_id')
+                ->select('id', 'title', 'sub_title', 'slug', 'image', 'description', 'banner')
+                ->get(),
 
             'message' => Message::where('type', 'page')
                 ->select('id', 'title', 'sub_title', 'description', 'image', 'banner')
@@ -106,10 +113,6 @@ class HomeController extends Controller
                 ->get(),
 
 
-        ], 200, [
-            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
-            'Pragma' => 'no-cache',
-            'Expires' => '0',
         ]);
     }
 }
