@@ -112,14 +112,16 @@ class AboutController extends BackendBaseController
                 $data['categories'] = $this->model->with('posts')->where('type', 'post')->whereNull('parent_id')->orderBy('rank')->get();
                 return response()->json([
                     'success_message' => $this->panel . ' Post created successfully',
-                    'url' => route($this->base_route . 'index'),
-                    'reload' => true,
-                    // 'isUpdate' => true,
-                    // 'html' => view($this->__loadDataToView($this->view_path . 'table'), compact('data'))->render(),
-                    // 'data' => $data['categories']
+                    // 'url' => route($this->base_route . 'index'),
+                    // 'reload' => true,
+                    'isUpdate' => true,
+                    'html' => view($this->__loadDataToView($this->view_path . 'table'), compact('data'))->render(),
+                    'data' => $data['categories'],
+                    'user' => $user
                 ]);
             } catch (\Exception $e) {
-                return response()->json([
+
+            return response()->json([
                     'error_message' => 'Something went wrong',
                     // 'url' => route($this->base_route . 'index'),
                     // 'reload' => true

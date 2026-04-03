@@ -13,6 +13,7 @@ class Setting extends BackendBaseModel
         'slogan',
         'email',
         'phone',
+        'phone_two',
         'mobile',
         'licence',
         'address',

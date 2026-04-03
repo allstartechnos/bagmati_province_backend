@@ -9,7 +9,7 @@
         <div class="col-lg-8">
             <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                    <div class="d-flex justity-content-between">
+                    <div class="d-flex justity-content-between ">
                         <h6 class="card-title">{{ $panel ?? '' }} (Post) </h6>
                         <span class="ms-auto"></span>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#add-board"><i
@@ -17,7 +17,9 @@
                                 style="font-size: 32px;"></i></a>
 
                     </div>
-                    @include('admin.about.table')
+                    <div class="table-category-post">
+                        @include('admin.about.table')
+                    </div>
 
 
 
@@ -402,10 +404,12 @@
 
         });
 
-        
-        function updateData(res) {
-            $('#table_rows').html(res.html);
-        }
 
+        function updateData(res) {
+            $('.table-category-post').html(res.html);
+            if (res.user.parent_id == null) {
+                $('.about_category_id').append(`<option value="${res.user.id}">${res.user.title}</option>`);
+            }
+        }
     </script>
 @endpush

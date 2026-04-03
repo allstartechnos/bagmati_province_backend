@@ -8,9 +8,9 @@
 
                   <button class="accordion-button flex-grow-1" type="button" data-bs-toggle="collapse"
                       data-bs-target="#customized-Accordion{{ $category->slug }}" aria-expanded="true"
-                      aria-controls="customized-Accordion{{ $category->slug }}">
+                      aria-controls="customized-Accordion{{ $category->slug }}"> {{ $loop->iteration }}&nbsp;.
 
-                      {{ $category->title }} ({{ $category->posts->count() ?? '0' }})
+                      {{ $category->title }} ({{ $category->posts?->count() ?? '0' }})
                       <a class="btn btn-sm px-2 pl-2 btn-primary-light">
                           Design: {{ $category->design }}
                       </a>
@@ -49,9 +49,9 @@
                       </div>
                   </form>
               </h2>
-              <div id="customized-Accordion{{ $category->slug }}"
-                  class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
-                  aria-labelledby="customizedAccordion{{ $category->slug }}" data-bs-parent="#customizedAccordion">
+              <div id="customized-Accordion{{ $category->slug }}" {{-- class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}" --}}
+                  class="accordion-collapse collapse" aria-labelledby="customizedAccordion{{ $category->slug }}"
+                  data-bs-parent="#customizedAccordion">
                   <div class="accordion-body">
                       <div class="table-responsive">
                           <table id="user-datatable" class="table table-bordered table-hover">

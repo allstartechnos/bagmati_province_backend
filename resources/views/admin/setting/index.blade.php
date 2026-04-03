@@ -1088,9 +1088,18 @@
                                                     <span class="fw-medium">Phone :</span>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-9">
+                                            <div class="col-xl-3">
                                                 <input type="text" name="phone" class="form-control"
                                                     value="{{ isset($setting->phone) ? $setting->phone : old('phone') }}">
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="lh-1">
+                                                    <span class="fw-medium">Phone Two :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <input type="text" name="phone_two" class="form-control"
+                                                    value="{{ isset($setting->phone_two) ? $setting->phone_two : old('phone_two') }}">
                                             </div>
                                             <div class="col-xl-3">
                                                 <div class="lh-1">
